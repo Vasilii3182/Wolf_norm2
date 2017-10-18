@@ -6,7 +6,7 @@
 #    By: ofranco <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 14:38:17 by ofranco           #+#    #+#              #
-#    Updated: 2017/10/16 19:52:19 by ofranco          ###   ########.fr        #
+#    Updated: 2017/10/18 21:33:40 by ofranco          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ all : $(NAME)
 
 $(NAME): $(FSRCS)
 	make -C libft/
-	gcc $(FLAGS) -I $(HEADER) minilibx_macos/libmlx.a -g -framework OpenGL -framework AppKit $(LIB) $(FSRCS) -o $(NAME) 
+	gcc $(FLAGS) -I $(HEADER) minilibx_macos/libmlx.a -framework OpenGL -framework AppKit $(LIB) $(FSRCS) -o $(NAME) 
 
 clean :
 	make -C libft/ clean

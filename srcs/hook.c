@@ -6,12 +6,11 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 11:58:47 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/16 17:05:19 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/18 22:41:26 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h>
 
 void		hooks(t_mlx *mlx)
 {
@@ -19,20 +18,20 @@ void		hooks(t_mlx *mlx)
 	mlx_hook(mlx->win, 17, 1L << 0, hook_close, mlx);
 }
 
-void		forward_backward_or_getb(t_mlx *mlx)
+void		forward_backward_or_getb(t_mlx *mlx, double calc_x, double calc_y)
 {
 	if (KEYCODE == 126)
 	{
-		if (GRID[(int)(CAM_Y)][(int)(CAM_X + (cos((ANGLE * M_PI) / 180) * 0.12) * 1.5)] == 0)
-				CAM_X = CAM_X + (cos((ANGLE * M_PI) / 180) * 0.12);
-		if (GRID[(int)(CAM_Y + (sin((ANGLE * M_PI) / 180) * 0.12) * 1.5)][(int)(CAM_X)] == 0)
-				CAM_Y = CAM_Y + (sin((ANGLE * M_PI) / 180) * 0.12);
+		if (GRID[(int)(CAM_Y)][(int)(CAM_X + calc_x)] == 0)
+			CAM_X = CAM_X + (cos((ANGLE * M_PI) / 180) * 0.12);
+		if (GRID[(int)(CAM_Y + calc_y)][(int)(CAM_X)] == 0)
+			CAM_Y = CAM_Y + (sin((ANGLE * M_PI) / 180) * 0.12);
 	}
 	else if (KEYCODE == 125)
 	{
-		if (GRID[(int)(CAM_Y)][(int)(CAM_X - (cos((ANGLE * M_PI) / 180) * 0.12) * 1.5)] == 0)
+		if (GRID[(int)(CAM_Y)][(int)(CAM_X - calc_x)] == 0)
 			CAM_X = CAM_X - (cos((ANGLE * M_PI) / 180) * 0.12);
-		if (GRID[(int)(CAM_Y - (sin((ANGLE * M_PI) / 180) * 0.12) * 1.5)][(int)(CAM_X)] == 0)	
+		if (GRID[(int)(CAM_Y - calc_y)][(int)(CAM_X)] == 0)
 			CAM_Y = CAM_Y - (sin((ANGLE * M_PI) / 180) * 0.12);
 	}
 	else if (KEYCODE == 51)
@@ -41,13 +40,12 @@ void		forward_backward_or_getb(t_mlx *mlx)
 		CAM_Y = CAM_Y_OR;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
-	//delete_image(mlx);
-	mlx->image = new_image(mlx);
+	if ((mlx->image = new_image(mlx)) == NULL)
+		mlx_free(mlx);
 }
 
 void		right_left_or_spin(t_mlx *mlx)
 {
-	printf("==========================================>ANGLE =%f\n", ANGLE);
 	if (KEYCODE == 124)
 	{
 		ANGLE = ANGLE + 2.2;
@@ -64,17 +62,22 @@ void		right_left_or_spin(t_mlx *mlx)
 			ANGLE = ANGLE - 180;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
-	//delete_image(mlx);
-	mlx->image = new_image(mlx);
+	if ((mlx->image = new_image(mlx)) == NULL)
+		mlx_free(mlx);
 }
 
 int			key_press(int keycode, t_mlx *mlx)
 {
+	double calc_x;
+	double calc_y;
+
+	calc_x = (cos((ANGLE * M_PI) / 180) * 0.12) * 1.5;
+	calc_y = (sin((ANGLE * M_PI) / 180) * 0.12) * 1.5;
 	KEYCODE = keycode;
 	if (KEYCODE == 124 || KEYCODE == 123 || KEYCODE == 49)
 		right_left_or_spin(mlx);
 	if (KEYCODE == 126 || KEYCODE == 125 || KEYCODE == 51)
-		forward_backward_or_getb(mlx);
+		forward_backward_or_getb(mlx, calc_x, calc_y);
 	if (KEYCODE == 53)
 		mlx_free(mlx);
 	raytracing(mlx);

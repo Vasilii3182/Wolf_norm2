@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 11:09:16 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/16 15:01:17 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/18 22:48:25 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 # include "./../libft/libft.h"
 # include "./../minilibx_macos/mlx.h"
 # include <math.h>
-# include <time.h>
+
 # define GRID mlx->grid
 # define Y_NBR mlx->count_y
-# define X_NBR mlx->count_x
 # define SCALE mlx->parameters->scale
 # define HIGH_WALL mlx->parameters->highwall
 # define HIGH_CAM mlx->parameters->highcam
@@ -48,11 +47,6 @@
 # define COLOR mlx->ray->color
 # define KEYCODE mlx->ray->keyc
 # define TETA mlx->ray->teta
-# define FRAME mlx->ray->frame
-# define OLD_FRAME mlx->ray->old_frame
-# define CUR_FRAME mlx->ray->cur_frame
-# define MOVE_SPEED mlx->ray->move_speed
-# define ROT_SPEED mlx->ray->rot_speed
 
 # define NORTH 0x0C04F6
 # define SOUTH 0xF6EE04
@@ -76,11 +70,6 @@ typedef struct		s_ray {
 	int				color;
 	int				keyc;
 	double			teta;
-	double			old_frame;
-	double			cur_frame;
-	double			frame;
-	double			rot_speed;
-	double			move_speed;
 
 }					t_ray;
 
@@ -121,11 +110,10 @@ typedef struct		s_mlx {
 	t_params		*parameters;
 	t_ray			*ray;
 	int				count_y;
-	int				count_x;
 
 }					t_mlx;
 
-int					parsing(char *filename, t_mlx *mlx);
+int					parsing(t_mlx *mlx);
 void				y_axis(t_mlx *mlx, double angle_act);
 void				x_axis(t_mlx *mlx, double angle_act);
 t_mlx				*initialize_win(void);
@@ -141,5 +129,9 @@ void				hooks(t_mlx *mlx);
 int					hook_close(t_mlx *mlx);
 int					key_press(int keycode, t_mlx *mlx);
 double				reset_angle(double angle);
+int					check_grid(t_mlx *mlx);
+int					check_char(char *str);
+int					check_if_wall(t_mlx *mlx);
+int					check_if_wall2(t_mlx *mlx);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/16 14:06:44 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/16 14:46:36 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/18 22:42:40 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
 
-static int     check_if_wall2(t_mlx *mlx)
+int		check_if_wall2(t_mlx *mlx)
 {
 	if (ANGLE_ACT >= 180 && ANGLE_ACT < 270)
 	{
@@ -32,7 +32,7 @@ static int     check_if_wall2(t_mlx *mlx)
 	return (0);
 }
 
-static int     check_if_wall(t_mlx *mlx)
+int		check_if_wall(t_mlx *mlx)
 {
 	if (ANGLE_ACT >= 0 && ANGLE_ACT <= 90)
 	{
@@ -51,7 +51,7 @@ static int     check_if_wall(t_mlx *mlx)
 	return (check_if_wall2(mlx));
 }
 
-void    exception_y(t_mlx *mlx, double angle)
+void	exception_y(t_mlx *mlx, double angle)
 {
 	int sign;
 
@@ -70,7 +70,7 @@ void    exception_y(t_mlx *mlx, double angle)
 	HITX_Y = RAY_Y;
 }
 
-int     init_y(t_mlx *mlx, double angle_act)
+int		init_y(t_mlx *mlx, double angle_act)
 {
 	if (angle_act == 0 || angle_act == 180)
 	{
@@ -86,11 +86,11 @@ int     init_y(t_mlx *mlx, double angle_act)
 	return (-1);
 }
 
-void    y_axis(t_mlx *mlx, double angle_act)
+void	y_axis(t_mlx *mlx, double angle_act)
 {
-	int     up_or_down;
-	double  x_per_y;
-	double  y_per_x;
+	int		up_or_down;
+	double	x_per_y;
+	double	y_per_x;
 
 	if ((up_or_down = init_y(mlx, angle_act)) == 0)
 		return ;

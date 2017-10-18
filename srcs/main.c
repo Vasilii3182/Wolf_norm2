@@ -6,11 +6,12 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 11:36:44 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/16 15:01:52 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/18 22:45:27 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
+#include <stdio.h>
 
 double	reset_angle(double angle)
 {
@@ -24,11 +25,10 @@ double	reset_angle(double angle)
 void	define_params(t_mlx *mlx)
 {
 	SCALE = 64;
-	X_NBR = Y_NBR;
 	HIGH_WALL = 64;
 	HIGH_CAM = HIGH_WALL / 2;
-	CAM_X_OR = 32.50;
-	CAM_Y_OR = 4.50;
+	CAM_X_OR = 1.50;
+	CAM_Y_OR = 1.50;
 	FOV = 60;
 	ANGLE = 80;
 	SCREEN_X = 1280;
@@ -36,7 +36,6 @@ void	define_params(t_mlx *mlx)
 	S_DIST = 1108;
 	CAM_X = CAM_X_OR;
 	CAM_Y = CAM_Y_OR;
-	CUR_FRAME = 0;
 }
 
 int		main(int argc, char **argv)
@@ -53,7 +52,8 @@ int		main(int argc, char **argv)
 				mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, "wolf3d")) == NULL)
 		mlx_free(mlx);
 	filename = "maps/map_test_01.w3d";
-	parsing(filename, mlx);
+	if (parsing(mlx) == -1)
+		return (-1);
 	if ((mlx->image = new_image(mlx)) == NULL)
 		mlx_free(mlx);
 	raytracing(mlx);

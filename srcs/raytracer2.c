@@ -6,12 +6,11 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 17:40:22 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/16 17:06:04 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/18 19:51:26 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h>
 
 void	short_len(t_mlx *mlx, double angle)
 {
@@ -22,10 +21,6 @@ void	short_len(t_mlx *mlx, double angle)
 	x_axis(mlx, angle);
 	lenx = sqrt(pow((HITX_X - CAM_X), 2) + pow((HITX_Y - CAM_Y), 2));
 	leny = sqrt(pow((HITY_X - CAM_X), 2) + pow((HITY_Y - CAM_Y), 2));
-	/*printf("CAM_Y=%f CAM_X=%f\n", CAM_Y, CAM_X);
-	printf("HITX_X =%f HITX_Y = %f\n", HITX_X, HITX_Y);
-	printf("HITY_X =%f HITY_Y = %f\n", HITY_X, HITY_Y);
-	printf("lenx =%f leny=%f\n", lenx, leny);*/
 	if (lenx > leny)
 	{
 		WALL_X = HITY_X;
@@ -92,14 +87,6 @@ void	raytracing(t_mlx *mlx)
 		DIST_CORR = DISTANCE * cos((TETA * M_PI) / 180);
 		HEIGHT_WALL = (HIGH_WALL / (DIST_CORR * 64)) * S_DIST;
 		START_DRAW = (SCREEN_Y / 2) - (HEIGHT_WALL / 2);
-		printf("start_draw =%f\n", START_DRAW);
-		/*OLD_FRAME = CUR_FRAME;
-		CUR_FRAME = clock();
-		FRAME = (CUR_FRAME - OLD_FRAME) / 1000.0;
-		if (FRAME >= 0.02)
-			FRAME = FRAME - (FRAME / 2);
-		MOVE_SPEED = FRAME * 30.0;
-		ROT_SPEED = FRAME * 90;*/
 		draw_column(mlx, i);
 		i++;
 		ANGLE_ACT = ANGLE_ACT + 0.046875;
