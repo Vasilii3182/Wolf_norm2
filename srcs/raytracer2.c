@@ -42,7 +42,7 @@ void	short_len(t_mlx *mlx, double angle)
 
 void	end_draw(t_mlx *mlx, int i, int xscreen, int yscreen)
 {
-	while (i < HEIGHT_WALL)
+	while ((i < HEIGHT_WALL) && (i < SCREEN_Y))
 	{
 		image_set_pixel(mlx, xscreen, yscreen);
 		i++;
@@ -92,6 +92,7 @@ void	raytracing(t_mlx *mlx)
 		DIST_CORR = DISTANCE * cos((TETA * M_PI) / 180);
 		HEIGHT_WALL = (HIGH_WALL / (DIST_CORR * 64)) * S_DIST;
 		START_DRAW = (SCREEN_Y / 2) - (HEIGHT_WALL / 2);
+		printf("start_draw =%f\n", START_DRAW);
 		/*OLD_FRAME = CUR_FRAME;
 		CUR_FRAME = clock();
 		FRAME = (CUR_FRAME - OLD_FRAME) / 1000.0;

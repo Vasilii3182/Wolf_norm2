@@ -41,7 +41,7 @@ void		forward_backward_or_getb(t_mlx *mlx)
 		CAM_Y = CAM_Y_OR;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
-	delete_image(mlx);
+	//delete_image(mlx);
 	mlx->image = new_image(mlx);
 }
 
@@ -64,7 +64,7 @@ void		right_left_or_spin(t_mlx *mlx)
 			ANGLE = ANGLE - 180;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
-	delete_image(mlx);
+	//delete_image(mlx);
 	mlx->image = new_image(mlx);
 }
 

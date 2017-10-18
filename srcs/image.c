@@ -32,8 +32,11 @@ void	*delete_image(t_mlx *mlx)
 
 void	*new_image(t_mlx *mlx)
 {
-	if ((mlx->image = ft_memalloc(sizeof(t_image))) == NULL)
-		return (NULL);
+	if (mlx->image == NULL)
+	{
+		if ((mlx->image = ft_memalloc(sizeof(t_image))) == NULL)
+			return (NULL);
+	}
 	if ((mlx->image->image = mlx_new_image(mlx->mlx, SCREEN_X, SCREEN_Y))
 			== NULL)
 		return (delete_image(mlx));
