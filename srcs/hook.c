@@ -6,7 +6,7 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/11 11:58:47 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/18 22:41:26 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/19 14:05:09 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void		forward_backward_or_getb(t_mlx *mlx, double calc_x, double calc_y)
 		CAM_Y = CAM_Y_OR;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
+	delete_image(mlx);
 	if ((mlx->image = new_image(mlx)) == NULL)
 		mlx_free(mlx);
 }
@@ -62,6 +63,7 @@ void		right_left_or_spin(t_mlx *mlx)
 			ANGLE = ANGLE - 180;
 	}
 	mlx_clear_window(mlx->mlx, mlx->win);
+	delete_image(mlx);
 	if ((mlx->image = new_image(mlx)) == NULL)
 		mlx_free(mlx);
 }

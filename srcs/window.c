@@ -6,12 +6,11 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 17:34:16 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/15 14:35:14 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/19 13:49:04 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h>
 
 t_mlx	*initialize_win(void)
 {

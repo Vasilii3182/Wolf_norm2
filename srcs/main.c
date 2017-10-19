@@ -6,12 +6,11 @@
 /*   By: ofranco <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/06 11:36:44 by ofranco           #+#    #+#             */
-/*   Updated: 2017/10/18 22:45:27 by ofranco          ###   ########.fr       */
+/*   Updated: 2017/10/19 13:47:46 by ofranco          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf.h"
-#include <stdio.h>
 
 double	reset_angle(double angle)
 {
@@ -40,7 +39,6 @@ void	define_params(t_mlx *mlx)
 
 int		main(int argc, char **argv)
 {
-	char	*filename;
 	t_mlx	*mlx;
 
 	if (!(argc == 1) || !(argv))
@@ -51,7 +49,6 @@ int		main(int argc, char **argv)
 	if ((mlx->win =
 				mlx_new_window(mlx->mlx, SCREEN_X, SCREEN_Y, "wolf3d")) == NULL)
 		mlx_free(mlx);
-	filename = "maps/map_test_01.w3d";
 	if (parsing(mlx) == -1)
 		return (-1);
 	if ((mlx->image = new_image(mlx)) == NULL)
